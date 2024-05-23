@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace cleancode
 {
-    internal class tablas_multiplicar
+    internal class ConversionUnidades
     {
         public static void main()
         {
-            Console.WriteLine("\tTablas de multiplicar");
+            Console.WriteLine("\tConversion de unidades");
+            Console.WriteLine("*NOTA: PROGRAMA EN DESARROLLO");
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cleancode
 {
-    internal class Calculadora_simple
+    internal class CalculadoraSimple
     {
         public static void main()
         {
@@ -33,34 +33,34 @@ namespace cleancode
                 switch (menuOperacionAritmetica)
                 {
                     case 1:
-                        Console.WriteLine("La suma es: " + suma(numero1, numero2));
+                        Console.WriteLine("La suma es: " + Suma(numero1, numero2));
                         break;
                     case 2:
-                        Console.WriteLine("La resta es: " + resta(numero1, numero2));
+                        Console.WriteLine("La resta es: " + Resta(numero1, numero2));
                         break;
                     case 3:
-                        Console.WriteLine("La multiplicación es: " + multiplicar(numero1, numero2));
+                        Console.WriteLine("La multiplicación es: " + Multiplicar(numero1, numero2));
                         break;
                     case 4:
-                        Console.WriteLine("La división es: " + dividir(numero1, numero2));
+                        Console.WriteLine("La división es: " + Dividir(numero1, numero2));
                         break;
                 }
             } while (menuOperacionAritmetica != 0);
 
 
-            float suma(float numero1, float numero2)
+            float Suma(float numero1, float numero2)
             {
                 return numero1 + numero2;
             }
-            float resta(float numero1, float numero2)
+            float Resta(float numero1, float numero2)
             {
                 return numero1 - numero2;
             }
-            float multiplicar(float numero1, float numero2)
+            float Multiplicar(float numero1, float numero2)
             {
                 return numero1 * numero2;
             }
-            float dividir(float numero1, float numero2)
+            float Dividir(float numero1, float numero2)
             {
                 return numero1 / numero2;
             }
