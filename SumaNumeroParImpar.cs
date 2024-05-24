@@ -8,50 +8,51 @@ namespace cleancode
 {
     internal class SumaNumeroParImpar
     {
-        public static void main()
+        public static void RevisarListaNumeroParImpar()
         {
             Console.WriteLine("\tSuma de números pares e impares");
             Console.WriteLine("Ingrese un listado de numeros separados por comas, sin espacios");
-            string[] numero = Console.ReadLine().Split(',',StringSplitOptions.RemoveEmptyEntries);
+            string[] listaNumero = Console.ReadLine().Split(',',StringSplitOptions.RemoveEmptyEntries);
             int sumaPar = 0;
             int sumaImpar = 0;
-            int[]numeroPar = new int[numero.Length];
-            int[]numeroImpar = new int[numero.Length];
-            for (int i = 0; i < numero.Length; i++)
+            int[] listaNumeroPar = new int[listaNumero.Length];
+            int[] listaNumeroImpar = new int[listaNumero.Length];
+            for (int i = 0; i < listaNumero.Length; i++)
             {
-                if (int.Parse(numero[i]) % 2 == 0)
+                if (int.Parse(listaNumero[i]) % 2 == 0)
                 {
-                    numeroPar[i] = int.Parse(numero[i]);
-                    sumaPar += numeroPar[i];
+                    listaNumeroPar[i] = int.Parse(listaNumero[i]);
+                    sumaPar += listaNumeroPar[i];
                 }
                 else
                 {
-                    numeroImpar[i] = int.Parse(numero[i]);
-                    sumaImpar += numeroImpar[i];
+                    listaNumeroPar[i] = int.Parse(listaNumero[i]);
+                    sumaImpar += listaNumeroImpar[i];
                 }
             }
             Console.Write("\nLista de numeros pares: ");
-            ImprimirLista(numeroPar);
+            ImprimirListaNumeros(listaNumeroPar);
             Console.WriteLine("\nLa suma de los números pares es: " + sumaPar);
 
             Console.Write("\nLista de numeros impares: ");
-            ImprimirLista(numeroImpar);
+            ImprimirListaNumeros(listaNumeroImpar);
             Console.WriteLine("\nLa suma de los números impares es: " + sumaImpar);
             
-            void ImprimirLista(int[] lista)
+            
+        }
+        public static void ImprimirListaNumeros(int[] lista)
+        {
+            foreach (var item in lista)
             {
-                foreach (var item in lista)
-                {
-                    QuitarCero(item);
-                }
+                QuitarCeroLista(item);
             }
+        }
 
-            void QuitarCero(int item)
+        public static void QuitarCeroLista(int item)
+        {
+            if (item != 0)
             {
-                if (item != 0)
-                {
-                    Console.Write(item + ",");
-                }
+                Console.Write(item + ",");
             }
         }
     }

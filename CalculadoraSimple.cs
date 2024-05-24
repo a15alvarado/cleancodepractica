@@ -8,19 +8,19 @@ namespace cleancode
 {
     internal class CalculadoraSimple
     {
-        public static void main()
+        public static void ObtenerCalculosAritmeticos()
         {
 
             Console.WriteLine("\tCalculadora");
-            float menuOperacionAritmetica;
+            float numeroOpcionOperacionAritmetica;
             //tablas_multiplicar.main();
             do
             {
                 Console.WriteLine("Ingrese la operación a realizar:");
                 Console.WriteLine("1)Suma    2)Resta    3)Multiplicar    4)Dividir    0)Salir");
-                menuOperacionAritmetica = float.Parse(Console.ReadLine());
-                if (menuOperacionAritmetica == 0) break;
-                if (menuOperacionAritmetica < 0 || menuOperacionAritmetica > 4)
+                numeroOpcionOperacionAritmetica = float.Parse(Console.ReadLine());
+                if (numeroOpcionOperacionAritmetica == 0) break;
+                if (numeroOpcionOperacionAritmetica < 0 || numeroOpcionOperacionAritmetica > 4)
                 {
                     Console.Write("Operación no válida, ");
                     continue;
@@ -30,39 +30,45 @@ namespace cleancode
                 Console.WriteLine("Ingrese No. 2:");
                 float numero2 = float.Parse(Console.ReadLine());
 
-                switch (menuOperacionAritmetica)
+                switch (numeroOpcionOperacionAritmetica)
                 {
                     case 1:
-                        Console.WriteLine("La suma es: " + Suma(numero1, numero2));
+                        Suma(numero1, numero2);
                         break;
                     case 2:
-                        Console.WriteLine("La resta es: " + Resta(numero1, numero2));
+                        Resta(numero1, numero2);
                         break;
                     case 3:
-                        Console.WriteLine("La multiplicación es: " + Multiplicar(numero1, numero2));
+                        Multiplicar(numero1, numero2);
                         break;
                     case 4:
-                        Console.WriteLine("La división es: " + Dividir(numero1, numero2));
+                        Dividir(numero1, numero2);
                         break;
                 }
-            } while (menuOperacionAritmetica != 0);
+            } while (numeroOpcionOperacionAritmetica != 0);
 
-
-            float Suma(float numero1, float numero2)
+        }
+        public static void Suma(float numero1, float numero2)
+        {
+            Console.WriteLine("La suma es: " + (numero1 + numero2));
+        }
+        public static void Resta(float numero1, float numero2)
+        {
+            Console.WriteLine("La resta es: " + (numero1 - numero2));
+        }
+        public static void  Multiplicar(float numero1, float numero2)
+        {
+            Console.WriteLine("La multiplicación es: " + (numero1 * numero2));
+        }
+        public static void Dividir(float numero1, float numero2)
+        {
+            if (numero2 == 0)
             {
-                return numero1 + numero2;
+                Console.WriteLine("No se puede dividir por 0");
             }
-            float Resta(float numero1, float numero2)
+            else
             {
-                return numero1 - numero2;
-            }
-            float Multiplicar(float numero1, float numero2)
-            {
-                return numero1 * numero2;
-            }
-            float Dividir(float numero1, float numero2)
-            {
-                return numero1 / numero2;
+                Console.WriteLine("La división es: " + (numero1 / numero2));
             }
         }
     }

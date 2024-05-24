@@ -8,7 +8,7 @@ namespace cleancode
 {
     internal class Fibonacci
     {
-        public static void main()
+        public static void ObtenerSecuenciaFibonacci()
         {
             Console.WriteLine("\tSerie de Fibonacci");
             Console.WriteLine("Ingrese la cantidad de terminos de la secuencia Fibonacci que desea mostrar:");
@@ -16,7 +16,7 @@ namespace cleancode
             int primerNumero = 0;
             int segundoNumero = 1;
             int siguienteNumero = 0;
-            for (int i = 0; i < limiteSecuenciaFibonacci; i++)
+            for (int i = 0; i <= limiteSecuenciaFibonacci; i++)
             {
                 if(i <= 1)
                 {

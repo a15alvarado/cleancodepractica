@@ -8,7 +8,7 @@ namespace cleancode
 {
     internal class TablasMultiplicar
     {
-        public static void main()
+        public static void GenerarTablasMultiplicar()
         {
             Console.WriteLine("\tTablas de multiplicar");
             Console.WriteLine("Ingrese el número de la tabla a mostrar:");
