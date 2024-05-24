@@ -21,10 +21,10 @@ switch (numeroOpcionMenu)
         Fibonacci.ObtenerSecuenciaFibonacci();
         break;
     case 5:
-        ContadorVocalesConsonantes.main();
+        ContadorVocalesConsonantes.AnalizarTexto();
         break;
     case 6:
-        ConversionUnidades.main();
+        ConversionUnidades.CalcularUnidadMedida();
         break;
     case 7:
         OrdenarListaNumeros.main();
