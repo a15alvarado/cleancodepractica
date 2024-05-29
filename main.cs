@@ -7,7 +7,6 @@ do
     Console.WriteLine("1) Calculadora\t\t\t2) Tablas de multiplicar\t\t3) Suma de números pares e impares" +
                 "\n4) Fibonacci\t\t\t5) Contador de vocales y consonantes\t6) Conversión de unidades" +
                 "\n7) Ordenar lista de números\t8) Validación de contraseñas");
-
     int numeroOpcionMenu = int.Parse(Console.ReadLine());
 
     switch (numeroOpcionMenu)
