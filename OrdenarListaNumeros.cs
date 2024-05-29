@@ -11,8 +11,6 @@ namespace cleancode
         public static void main()
         {
             Console.WriteLine("\tOrdenador ascendente y descendente de lista de números");
-            Console.WriteLine("*NOTA: PROGRAMA EN DESARROLLO");
-            
         }
     }
 }

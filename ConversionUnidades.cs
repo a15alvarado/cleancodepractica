@@ -27,6 +27,7 @@ namespace cleancode
                 if(unidadMedidaActual < 1 || unidadMedidaActual > 17)
                 {
                     Console.WriteLine("Opción no válida");
+                    RepetirMenuConversionUnidades(repetirConversion);
                     continue;
                 }
                 Console.WriteLine("Ingrese la unidad de medida a la que desea convertir:");
@@ -34,20 +35,17 @@ namespace cleancode
                 if (unidadMedidaConvertir < 1 || unidadMedidaConvertir > 17)
                 {
                     Console.WriteLine("Opción no válida");
+                    RepetirMenuConversionUnidades(repetirConversion);
                     continue;
                 }
                 
                 RevisionConversionUnidades(unidadMedidaActual, unidadMedidaConvertir);
+                RepetirMenuConversionUnidades(repetirConversion);
                 
-                Console.WriteLine("¿Desea realizar otra conversión de unidades? (s/n)");
-                string respuesta = Console.ReadLine();
-                if (respuesta.ToLower() != "s")
-                {
-                    repetirConversion = false;
-                }
             }
 
         }
+        
         public static void RevisionConversionUnidades(int unidadMedidaActual, int unidadMedidaConvertir)
         {
             if ((unidadMedidaActual >= 1 && unidadMedidaActual <= 4) && (unidadMedidaConvertir >= 1 && unidadMedidaConvertir <= 4))
@@ -508,5 +506,14 @@ namespace cleancode
             }
         }
 
+        public static void RepetirMenuConversionUnidades(bool repetirConversion)
+        {
+            Console.WriteLine("¿Desea realizar otra conversión de unidades? (s/n)");
+            string respuesta = Console.ReadLine();
+            if (respuesta.ToLower() != "s")
+            {
+                repetirConversion = false;
+            }
+        }
     }
 }
