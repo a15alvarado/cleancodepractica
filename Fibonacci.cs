@@ -16,7 +16,8 @@ namespace cleancode
             int primerNumero = 0;
             int segundoNumero = 1;
             int siguienteNumero = 0;
-            for (int i = 0; i <= limiteSecuenciaFibonacci; i++)
+            Console.Write("Cadena de Fibonacci de los primeros " + limiteSecuenciaFibonacci + " términos: ");
+            for (int i = 0; i < limiteSecuenciaFibonacci; i++)
             {
                 if(i <= 1)
                 {
@@ -30,6 +31,7 @@ namespace cleancode
                 }
                 Console.Write(siguienteNumero + " ");
             }
+            Console.WriteLine();
            
         }
     }

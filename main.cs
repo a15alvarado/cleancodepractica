@@ -1,12 +1,14 @@
 ﻿using cleancode;
-
+//Codificación de caracteres UTF-8 para entrada y salida a español
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.InputEncoding = System.Text.Encoding.UTF8;
 bool continuar = true;
 do
 {
     Console.WriteLine("\tELija que desea utilizar:");
     Console.WriteLine("1) Calculadora\t\t\t2) Tablas de multiplicar\t\t3) Suma de números pares e impares" +
                 "\n4) Fibonacci\t\t\t5) Contador de vocales y consonantes\t6) Conversión de unidades" +
-                "\n7) Ordenar lista de números\t8) Validación de contraseñas");
+                "\n7) Ordenar lista de números\t8) Validación de contraseñas\t\t0) Salir");
     int numeroOpcionMenu = int.Parse(Console.ReadLine());
 
     switch (numeroOpcionMenu)

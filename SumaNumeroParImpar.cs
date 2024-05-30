@@ -26,7 +26,7 @@ namespace cleancode
                 }
                 else
                 {
-                    listaNumeroPar[i] = int.Parse(listaNumero[i]);
+                    listaNumeroImpar[i] = int.Parse(listaNumero[i]);
                     sumaImpar += listaNumeroImpar[i];
                 }
             }
