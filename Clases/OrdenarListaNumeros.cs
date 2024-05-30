@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cleancode
+namespace CleanCode.Clases
 {
     internal class OrdenarListaNumeros
     {
@@ -14,7 +14,7 @@ namespace cleancode
             Console.WriteLine("Ingrese los números separados por coma");
             string[] filtroListaNumeros = Console.ReadLine().Split(',', StringSplitOptions.RemoveEmptyEntries);
             OrdenarListaNumerosAscendente(filtroListaNumeros);
-            OrdenarListaNumerosDescendente(filtroListaNumeros);            
+            OrdenarListaNumerosDescendente(filtroListaNumeros);
         }
         public static void OrdenarListaNumerosAscendente(string[] filtroListaNumeros)
         {
@@ -47,6 +47,6 @@ namespace cleancode
             }
             Console.WriteLine();
         }
-        
+
     }
 }

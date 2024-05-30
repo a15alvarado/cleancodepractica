@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cleancode
+namespace CleanCode.Clases
 {
     internal class CalculadoraSimple
     {
@@ -56,9 +56,9 @@ namespace cleancode
         {
             Console.WriteLine("La resta es: " + (numero1 - numero2));
         }
-        public static void  Multiplicar(float numero1, float numero2)
+        public static void Multiplicar(float numero1, float numero2)
         {
-            Console.WriteLine("La multiplicación es: " + (numero1 * numero2));
+            Console.WriteLine("La multiplicación es: " + numero1 * numero2);
         }
         public static void Dividir(float numero1, float numero2)
         {
@@ -68,7 +68,7 @@ namespace cleancode
             }
             else
             {
-                Console.WriteLine("La división es: " + (numero1 / numero2));
+                Console.WriteLine("La división es: " + numero1 / numero2);
             }
         }
     }

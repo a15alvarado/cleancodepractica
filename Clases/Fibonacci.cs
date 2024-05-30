@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cleancode
+namespace CleanCode.Clases
 {
     internal class Fibonacci
     {
@@ -19,7 +19,7 @@ namespace cleancode
             Console.Write("Cadena de Fibonacci de los primeros " + limiteSecuenciaFibonacci + " términos: ");
             for (int i = 0; i < limiteSecuenciaFibonacci; i++)
             {
-                if(i <= 1)
+                if (i <= 1)
                 {
                     siguienteNumero = i;
                 }
@@ -32,7 +32,7 @@ namespace cleancode
                 Console.Write(siguienteNumero + " ");
             }
             Console.WriteLine();
-           
+
         }
     }
 }

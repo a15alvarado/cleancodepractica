@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cleancode
+namespace CleanCode.Clases
 {
     internal class ConversionUnidades
     {
@@ -24,7 +24,7 @@ namespace cleancode
                 Console.WriteLine("14) Mililitros\t15) Centímetros cúbicos\n16) Litros\t17) Metros cúbicos");
                 Console.WriteLine("\nIngrese la unidad de medida actual:");
                 int unidadMedidaActual = int.Parse(Console.ReadLine());
-                if(unidadMedidaActual < 1 || unidadMedidaActual > 17)
+                if (unidadMedidaActual < 1 || unidadMedidaActual > 17)
                 {
                     Console.WriteLine("Opción no válida");
                     RepetirMenuConversionUnidades(ref repetirConversion);
@@ -38,35 +38,35 @@ namespace cleancode
                     RepetirMenuConversionUnidades(ref repetirConversion);
                     continue;
                 }
-                
+
                 RevisionConversionUnidades(unidadMedidaActual, unidadMedidaConvertir);
                 RepetirMenuConversionUnidades(ref repetirConversion);
-                
+
             }
 
         }
-        
+
         public static void RevisionConversionUnidades(int unidadMedidaActual, int unidadMedidaConvertir)
         {
-            if ((unidadMedidaActual >= 1 && unidadMedidaActual <= 4) && (unidadMedidaConvertir >= 1 && unidadMedidaConvertir <= 4))
+            if (unidadMedidaActual >= 1 && unidadMedidaActual <= 4 && unidadMedidaConvertir >= 1 && unidadMedidaConvertir <= 4)
             {
                 Console.WriteLine("Ingrese el valor a convertir:");
                 float valorConvertir = float.Parse(Console.ReadLine());
                 ConvertirEntreUnidadesLongitud(valorConvertir, unidadMedidaActual, unidadMedidaConvertir);
             }
-            else if ((unidadMedidaActual >= 5 && unidadMedidaActual <= 9) && (unidadMedidaConvertir >= 5 && unidadMedidaConvertir <= 9))
+            else if (unidadMedidaActual >= 5 && unidadMedidaActual <= 9 && unidadMedidaConvertir >= 5 && unidadMedidaConvertir <= 9)
             {
                 Console.WriteLine("Ingrese el valor a convertir:");
                 float valorConvertir = float.Parse(Console.ReadLine());
                 ConvertirEntreUnidadesMasa(valorConvertir, unidadMedidaActual, unidadMedidaConvertir);
             }
-            else if ((unidadMedidaActual >= 10 && unidadMedidaActual <= 13) && (unidadMedidaConvertir >= 10 && unidadMedidaConvertir <= 13))
+            else if (unidadMedidaActual >= 10 && unidadMedidaActual <= 13 && unidadMedidaConvertir >= 10 && unidadMedidaConvertir <= 13)
             {
                 Console.WriteLine("Ingrese el valor a convertir:");
                 float valorConvertir = float.Parse(Console.ReadLine());
                 ConvertirEntreUnidadesTiempo(valorConvertir, unidadMedidaActual, unidadMedidaConvertir);
             }
-            else if ((unidadMedidaActual >= 14 && unidadMedidaActual <= 17) && (unidadMedidaConvertir >= 14 && unidadMedidaConvertir <= 17))
+            else if (unidadMedidaActual >= 14 && unidadMedidaActual <= 17 && unidadMedidaConvertir >= 14 && unidadMedidaConvertir <= 17)
             {
                 Console.WriteLine("Ingrese el valor a convertir:");
                 float valorConvertir = float.Parse(Console.ReadLine());
@@ -75,10 +75,10 @@ namespace cleancode
             else
             {
                 Console.WriteLine("Unidades no compatibles");
-            }        
-            
+            }
+
         }
-        public static void ConvertirEntreUnidadesLongitud(float valorConvertir,int unidadMedidaActual, int unidadMedidaConvertir)
+        public static void ConvertirEntreUnidadesLongitud(float valorConvertir, int unidadMedidaActual, int unidadMedidaConvertir)
         {
             float resultado = 0;
             switch (unidadMedidaActual)

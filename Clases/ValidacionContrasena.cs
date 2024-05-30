@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cleancode
+namespace CleanCode.Clases
 {
     internal class ValidacionContrasena
     {
         public static void VerificarContrasena()
         {
             bool esValida = false;
-            do {
+            do
+            {
                 Console.WriteLine("\tValidación de contraseña");
                 Console.WriteLine("Ingrese una contraseña:");
                 Console.WriteLine("NOTA:La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial");
                 string contrasena = Console.ReadLine();
-                ChequeoIngresoCorrectoContrasena(contrasena,ref esValida);
+                ChequeoIngresoCorrectoContrasena(contrasena, ref esValida);
             } while (!esValida);
-            
+
         }
-        public static void ChequeoIngresoCorrectoContrasena(string contrasena,ref bool esValida)
+        public static void ChequeoIngresoCorrectoContrasena(string contrasena, ref bool esValida)
         {
             if (contrasena.Length < 8)
             {

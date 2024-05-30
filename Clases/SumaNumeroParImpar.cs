@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cleancode
+namespace CleanCode.Clases
 {
     internal class SumaNumeroParImpar
     {
@@ -12,7 +12,7 @@ namespace cleancode
         {
             Console.WriteLine("\tSuma de números pares e impares");
             Console.WriteLine("Ingrese un listado de numeros separados por comas, sin espacios");
-            string[] listaNumero = Console.ReadLine().Split(',',StringSplitOptions.RemoveEmptyEntries);
+            string[] listaNumero = Console.ReadLine().Split(',', StringSplitOptions.RemoveEmptyEntries);
             int sumaPar = 0;
             int sumaImpar = 0;
             int[] listaNumeroPar = new int[listaNumero.Length];
@@ -37,8 +37,8 @@ namespace cleancode
             Console.Write("\nLista de numeros impares: ");
             ImprimirListaNumeros(listaNumeroImpar);
             Console.WriteLine("\nLa suma de los números impares es: " + sumaImpar);
-            
-            
+
+
         }
         public static void ImprimirListaNumeros(int[] lista)
         {

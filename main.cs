@@ -1,7 +1,9 @@
-﻿using cleancode;
+﻿using CleanCode.Clases;
+
 //Codificación de caracteres UTF-8 para entrada y salida a español
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Console.InputEncoding = System.Text.Encoding.UTF8;
+
 bool continuar = true;
 do
 {
