@@ -8,46 +8,44 @@ namespace CleanCode.Clases
 {
     internal class ValidacionContrasena
     {
+        public static bool esValida=false;
         public static void VerificarContrasena()
         {
-            bool esValida = false;
+            
             do
             {
                 Console.WriteLine("\tValidación de contraseña");
                 Console.WriteLine("Ingrese una contraseña:");
                 Console.WriteLine("NOTA:La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial");
                 string contrasena = Console.ReadLine();
-                ChequeoIngresoCorrectoContrasena(contrasena, ref esValida);
+                esValida= ChequeoIngresoCorrectoContrasena(contrasena);
             } while (!esValida);
 
         }
-        public static void ChequeoIngresoCorrectoContrasena(string contrasena, ref bool esValida)
+        public static bool ChequeoIngresoCorrectoContrasena(string contrasena)
         {
             if (contrasena.Length < 8)
             {
                 Console.WriteLine("La contraseña debe tener al menos 8 caracteres");
-                esValida = false;
+                return false;
             }
             if (!contrasena.Any(char.IsUpper))
             {
                 Console.WriteLine("La contraseña debe tener al menos una letra mayúscula");
-                esValida = false;
+                return false;
             }
             if (!contrasena.Any(char.IsDigit))
             {
                 Console.WriteLine("La contraseña debe tener al menos un número");
-                esValida = false;
+                return false;
             }
             if (!contrasena.Any(ch => !char.IsLetterOrDigit(ch)))
             {
                 Console.WriteLine("La contraseña debe tener al menos un carácter especial");
-                esValida = false;
+                return false;
             }
-            if (contrasena.Length >= 8 && contrasena.Any(char.IsUpper) && contrasena.Any(char.IsDigit) && contrasena.Any(ch => !char.IsLetterOrDigit(ch)))
-            {
-                Console.WriteLine("La contraseña es válida");
-                esValida = true;
-            }
+            Console.WriteLine("La contraseña es válida\n");
+            return true;
         }
     }
 }

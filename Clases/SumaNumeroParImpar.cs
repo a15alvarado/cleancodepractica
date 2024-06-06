@@ -43,9 +43,7 @@ namespace CleanCode.Clases
         public static void ImprimirListaNumeros(int[] lista)
         {
             foreach (var item in lista)
-            {
-                QuitarCeroLista(item);
-            }
+                Console.Write(item != 0 ? item + ",":"");
         }
 
         public static void QuitarCeroLista(int item)

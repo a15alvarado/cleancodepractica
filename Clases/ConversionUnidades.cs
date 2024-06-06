@@ -8,9 +8,9 @@ namespace CleanCode.Clases
 {
     internal class ConversionUnidades
     {
+        public static bool repetirConversion = true;
         public static void CalcularUnidadMedida()
         {
-            bool repetirConversion = true;
             while (repetirConversion)
             {
                 Console.WriteLine("\tConversion de unidades");
@@ -24,23 +24,26 @@ namespace CleanCode.Clases
                 Console.WriteLine("14) Mililitros\t15) Centímetros cúbicos\n16) Litros\t17) Metros cúbicos");
                 Console.WriteLine("\nIngrese la unidad de medida actual:");
                 int unidadMedidaActual = int.Parse(Console.ReadLine());
+                
                 if (unidadMedidaActual < 1 || unidadMedidaActual > 17)
                 {
                     Console.WriteLine("Opción no válida");
-                    RepetirMenuConversionUnidades(ref repetirConversion);
+                    RepetirMenuConversionUnidades();
                     continue;
                 }
+                
                 Console.WriteLine("Ingrese la unidad de medida a la que desea convertir:");
                 int unidadMedidaConvertir = int.Parse(Console.ReadLine());
+                
                 if (unidadMedidaConvertir < 1 || unidadMedidaConvertir > 17)
                 {
                     Console.WriteLine("Opción no válida");
-                    RepetirMenuConversionUnidades(ref repetirConversion);
+                    RepetirMenuConversionUnidades();
                     continue;
                 }
 
                 RevisionConversionUnidades(unidadMedidaActual, unidadMedidaConvertir);
-                RepetirMenuConversionUnidades(ref repetirConversion);
+                RepetirMenuConversionUnidades();
 
             }
 
@@ -506,14 +509,10 @@ namespace CleanCode.Clases
             }
         }
 
-        public static void RepetirMenuConversionUnidades(ref bool repetirConversion)
+        public static void RepetirMenuConversionUnidades()
         {
-            Console.WriteLine("¿Desea realizar otra conversión de unidades? (s/n)");
-            string respuesta = Console.ReadLine();
-            if (respuesta.ToLower() != "s")
-            {
-                repetirConversion = false;
-            }
+            Console.WriteLine("¿Desea realizar otra conversión de unidades? (s/n)");            
+            repetirConversion = Console.ReadLine().ToLower() == "s" ? true:false;            
         }
     }
 }
