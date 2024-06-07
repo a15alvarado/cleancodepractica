@@ -17,7 +17,7 @@ namespace CleanCode.Clases
             Console.WriteLine("\tSerie de Fibonacci");
             Console.WriteLine("Ingrese la cantidad de terminos de la secuencia Fibonacci que desea mostrar:");
             limiteSecuenciaFibonacci = int.Parse(Console.ReadLine());
-            Console.Write("Cadena de Fibonacci de los primeros " + limiteSecuenciaFibonacci + " términos: ");GenerarSecuenciaFibonacci();
+            Console.Write("Cadena de Fibonacci de los primeros " + limiteSecuenciaFibonacci + " términos: "); GenerarSecuenciaFibonacci();
         }
         public static void GenerarSecuenciaFibonacci()
         {
