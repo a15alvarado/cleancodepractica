@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,285 +9,160 @@ namespace CleanCode.Clases
 {
     internal class ConversionUnidades
     {
-         public static bool repetirConversion = true;
-         public static void CalcularUnidadMedida()
-         {
-             while (repetirConversion)
-             {
-                 Console.WriteLine("\tConversion de unidades");
-                 Console.WriteLine("\n\tUnidades de longitud:");
-                 Console.WriteLine("1) Milímetros\t2) Centímetros\n3) Metros\t4) Kilómetros");
-                 Console.WriteLine("\n\tUnidades de masa:");
-                 Console.WriteLine("5) Gramos\t6) Kilogramos\n7) Toneladas\t8) Libras\n9) Onzas");
-                 Console.WriteLine("\n\tUnidades de tiempo:");
-                 Console.WriteLine("10) Segundos\t11) Minutos\n12) Horas\t13) Días");
-                 Console.WriteLine("\n\tUnidades de volumen:");
-                 Console.WriteLine("14) Mililitros\t15) Centímetros cúbicos\n16) Litros\t17) Metros cúbicos");
-                 Console.WriteLine("\nIngrese la unidad de medida actual:");
-                 int unidadMedidaActual = int.Parse(Console.ReadLine());
+        public static bool repetirConversion = true;
+        public static void CalcularUnidadMedida()
+        {
+            while (repetirConversion)
+            {
+                Console.WriteLine("Seleccione la categoría de la unidad de conversión:");
+                Console.WriteLine("1) Longitud\n2) Masa\n3) Tiempo\n4) Volumen");
+                int categoria = int.Parse(Console.ReadLine());
 
-                 if (unidadMedidaActual < 1 || unidadMedidaActual > 17)
-                 {
-                     Console.WriteLine("Opción no válida");
-                     RepetirMenuConversionUnidades();
-                     continue;
-                 }
+                string[] unidades = ObtenerUnidades(categoria);
 
-                 Console.WriteLine("Ingrese la unidad de medida a la que desea convertir:");
-                 int unidadMedidaConvertir = int.Parse(Console.ReadLine());
+                Console.WriteLine("Seleccione la unidad de origen:");
+                for (int i = 0; i < unidades.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}) {unidades[i]}");
+                }
+                int unidadOrigenIndex = int.Parse(Console.ReadLine()) - 1;
 
-                 if (unidadMedidaConvertir < 1 || unidadMedidaConvertir > 17)
-                 {
-                     Console.WriteLine("Opción no válida");
-                     RepetirMenuConversionUnidades();
-                     continue;
-                 }
+                Console.WriteLine("Seleccione la unidad de destino:");
+                for (int i = 0; i < unidades.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}) {unidades[i]}");
+                }
+                int unidadDestinoIndex = int.Parse(Console.ReadLine()) - 1;
 
-                 RevisionConversionUnidades(unidadMedidaActual, unidadMedidaConvertir);
-                 RepetirMenuConversionUnidades();
-             }
-         }
+                Console.WriteLine("Ingrese el valor a convertir:");
+                double valor = double.Parse(Console.ReadLine());
 
-         public static void RevisionConversionUnidades(int unidadMedidaActual, int unidadMedidaConvertir)
-         {
-             if (unidadMedidaActual >= 1 && unidadMedidaActual <= 4 && unidadMedidaConvertir >= 1 && unidadMedidaConvertir <= 4)
-             {
-                 Console.WriteLine("Ingrese el valor a convertir:");
-                 float valorConvertir = float.Parse(Console.ReadLine());
-                 ConvertirEntreUnidadesLongitud(valorConvertir, unidadMedidaActual, unidadMedidaConvertir);
-             }
-             else if (unidadMedidaActual >= 5 && unidadMedidaActual <= 9 && unidadMedidaConvertir >= 5 && unidadMedidaConvertir <= 9)
-             {
-                 Console.WriteLine("Ingrese el valor a convertir:");
-                 float valorConvertir = float.Parse(Console.ReadLine());
-                 ConvertirEntreUnidadesMasa(valorConvertir, unidadMedidaActual, unidadMedidaConvertir);
-             }
-             else if (unidadMedidaActual >= 10 && unidadMedidaActual <= 13 && unidadMedidaConvertir >= 10 && unidadMedidaConvertir <= 13)
-             {
-                 Console.WriteLine("Ingrese el valor a convertir:");
-                 float valorConvertir = float.Parse(Console.ReadLine());
-                 ConvertirEntreUnidadesTiempo(valorConvertir, unidadMedidaActual, unidadMedidaConvertir);
-             }
-             else if (unidadMedidaActual >= 14 && unidadMedidaActual <= 17 && unidadMedidaConvertir >= 14 && unidadMedidaConvertir <= 17)
-             {
-                 Console.WriteLine("Ingrese el valor a convertir:");
-                 float valorConvertir = float.Parse(Console.ReadLine());
-                 ConvertirEntreUnidadesVolumen(valorConvertir, unidadMedidaActual, unidadMedidaConvertir);
-             }
-             else
-             {
-                 Console.WriteLine("Unidades no compatibles");
-             }
+                string conversion = $"{unidades[unidadOrigenIndex]} a {unidades[unidadDestinoIndex]}";
 
-         }
-         public static void ConvertirEntreUnidadesLongitud(float valorConvertir, int unidadMedidaActual, int unidadMedidaConvertir)
-         {
-            float resultado = 0;
-            resultado = unidadMedidaActual == 1 ? ConvertirMilimetros(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 2 ? ConvertirCentimetros(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 3 ? ConvertirMetros(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 4 ? ConvertirKilometros(valorConvertir, unidadMedidaConvertir) :
-                        0;
-            Console.WriteLine($"El valor {valorConvertir} en {ObtenerNombreUnidadMedida(unidadMedidaActual)} es igual a {resultado} en {ObtenerNombreUnidadMedida(unidadMedidaConvertir)}");
-            Console.WriteLine($"El valor {valorConvertir} en {ObtenerNombreUnidadMedida(unidadMedidaActual)} es igual a {resultado} en {ObtenerNombreUnidadMedida(unidadMedidaConvertir)}");
-         }
-         public static void ConvertirEntreUnidadesMasa(float valorConvertir, int unidadMedidaActual, int unidadMedidaConvertir)
-         {
-             float resultado = 0;
-            resultado = unidadMedidaActual == 5 ? ConvertirGramos(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 6 ? ConvertirKilogramos(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 7 ? ConvertirToneladas(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 8 ? ConvertirLibras(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 9 ? ConvertirOnzas(valorConvertir, unidadMedidaConvertir) :
-                            0;
-             Console.WriteLine($"El valor {valorConvertir} en {ObtenerNombreUnidadMedida(unidadMedidaActual)} es igual a {resultado} en {ObtenerNombreUnidadMedida(unidadMedidaConvertir)}");
-         }
-         public static void ConvertirEntreUnidadesTiempo(float valorConvertir, int unidadMedidaActual, int unidadMedidaConvertir)
-         {
-             float resultado = 0;
-            resultado = unidadMedidaActual == 10 ? ConvertirSegundos(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 11 ? ConvertirMinutos(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 12 ? ConvertirHoras(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 13 ? ConvertirDias(valorConvertir, unidadMedidaConvertir) :
-                            0;
-             Console.WriteLine($"El valor {valorConvertir} en {ObtenerNombreUnidadMedida(unidadMedidaActual)} es igual a {resultado} en {ObtenerNombreUnidadMedida(unidadMedidaConvertir)}");
-         }
-         public static void ConvertirEntreUnidadesVolumen(float valorConvertir, int unidadMedidaActual, int unidadMedidaConvertir)
-         {
-             float resultado = 0;
-            resultado = unidadMedidaActual == 14 ? ConvertirMililitros(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 15 ? ConvertirCentimetrosCubicos(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 16 ? ConvertirLitros(valorConvertir, unidadMedidaConvertir) :
-                        unidadMedidaActual == 17 ? ConvertirMetrosCubicos(valorConvertir, unidadMedidaConvertir) :
-                            0;
-             Console.WriteLine($"El valor {valorConvertir} en {ObtenerNombreUnidadMedida(unidadMedidaActual)} es igual a {resultado} en {ObtenerNombreUnidadMedida(unidadMedidaConvertir)}");
-         }
-         public static float ConvertirMilimetros(float valorConvertir, int unidadMedidaConvertir)
+                try
+                {
+                    double resultado = Conversiones.Convertir(conversion, valor);
+                    Console.WriteLine($"El resultado de la conversión es: {resultado}\n");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                RepetirMenuConversionUnidades();
+            }
+        }
+
+        static string[] ObtenerUnidades(int categoria)
         {
-            return unidadMedidaConvertir == 1 ? valorConvertir :
-                   unidadMedidaConvertir == 2 ? valorConvertir / 10 :
-                   unidadMedidaConvertir == 3 ? valorConvertir / 1000 :
-                   unidadMedidaConvertir == 4 ? valorConvertir / 1000000 :
-                   0;
+            switch (categoria)
+            {
+                case 1:
+                    return new string[] { "Milímetros", "Centímetros", "Metros", "Kilómetros" };
+                case 2:
+                    return new string[] { "Gramos", "Kilogramos", "Toneladas", "Libras", "Onzas" };
+                case 3:
+                    return new string[] { "Segundos", "Minutos", "Horas", "Días" };
+                case 4:
+                    return new string[] { "Mililitros", "Centímetros cúbicos", "Litros", "Metros cúbicos" };
+                default:
+                    return new string[0];
+            }
         }
-        public static float ConvertirCentimetros(float valorConvertir, int unidadMedidaConvertir)
-        { 
-            return unidadMedidaConvertir == 1 ? valorConvertir * 10 :
-                   unidadMedidaConvertir == 2 ? valorConvertir :
-                   unidadMedidaConvertir == 3 ? valorConvertir / 100 :
-                   unidadMedidaConvertir == 4 ? valorConvertir / 100000 :
-                   0;
-        }
-        public static float ConvertirMetros(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 1 ? valorConvertir * 1000 :
-                   unidadMedidaConvertir == 2 ? valorConvertir * 100 :
-                   unidadMedidaConvertir == 3 ? valorConvertir :
-                   unidadMedidaConvertir == 4 ? valorConvertir / 1000 :
-                   0;
-        }
-        public static float ConvertirKilometros(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 1 ? valorConvertir * 1000000 :
-                   unidadMedidaConvertir == 2 ? valorConvertir * 100000 :
-                   unidadMedidaConvertir == 3 ? valorConvertir * 1000 :
-                   unidadMedidaConvertir == 4 ? valorConvertir :
-                   0;
-        }
-        public static float ConvertirGramos(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 5 ? valorConvertir :
-                   unidadMedidaConvertir == 6 ? valorConvertir / 1000 :
-                   unidadMedidaConvertir == 7 ? valorConvertir / 1000000 :
-                   unidadMedidaConvertir == 8 ? valorConvertir / 454 :
-                   unidadMedidaConvertir == 9 ? valorConvertir / 28350 :
-                   0;
-        }
-        public static float ConvertirKilogramos(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 5 ? valorConvertir * 1000 :
-                   unidadMedidaConvertir == 6 ? valorConvertir :
-                   unidadMedidaConvertir == 7 ? valorConvertir / 1000 :
-                   unidadMedidaConvertir == 8 ? valorConvertir / 0.454f :
-                   unidadMedidaConvertir == 9 ? valorConvertir / 0.02835f :
-                   0;
-        }
-        public static float ConvertirToneladas(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 5 ? valorConvertir * 1000000 :
-                   unidadMedidaConvertir == 6 ? valorConvertir * 1000 :
-                   unidadMedidaConvertir == 7 ? valorConvertir :
-                   unidadMedidaConvertir == 8 ? valorConvertir / 0.000454f :
-                   unidadMedidaConvertir == 9 ? valorConvertir / 0.00002835f :
-                   0;
-        }
-        public static float ConvertirLibras(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 5 ? valorConvertir * 454 :
-                   unidadMedidaConvertir == 6 ? valorConvertir * 0.454f :
-                   unidadMedidaConvertir == 7 ? valorConvertir * 0.000454f :
-                   unidadMedidaConvertir == 8 ? valorConvertir :
-                   unidadMedidaConvertir == 9 ? valorConvertir / 16 :
-                   0;
-        }
-        public static float ConvertirOnzas(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 5 ? valorConvertir * 28350 :
-                   unidadMedidaConvertir == 6 ? valorConvertir * 28.35f :
-                   unidadMedidaConvertir == 7 ? valorConvertir * 0.02835f :
-                   unidadMedidaConvertir == 8 ? valorConvertir * 16 :
-                   unidadMedidaConvertir == 9 ? valorConvertir :
-                   0;
-        }
-        public static float ConvertirSegundos(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 10 ? valorConvertir :
-                   unidadMedidaConvertir == 11 ? valorConvertir / 60 :
-                   unidadMedidaConvertir == 12 ? valorConvertir / 3600 :
-                   unidadMedidaConvertir == 13 ? valorConvertir / 86400 :
-                   0;
-        }
-        public static float ConvertirMinutos(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 10 ? valorConvertir * 60 :
-                   unidadMedidaConvertir == 11 ? valorConvertir :
-                   unidadMedidaConvertir == 12 ? valorConvertir / 60 :
-                   unidadMedidaConvertir == 13 ? valorConvertir / 1440 :
-                   0;
-        }
-        public static float ConvertirHoras(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 10 ? valorConvertir * 3600 :
-                   unidadMedidaConvertir == 11 ? valorConvertir * 60 :
-                   unidadMedidaConvertir == 12 ? valorConvertir :
-                   unidadMedidaConvertir == 13 ? valorConvertir / 24 :
-                   0;
-        }
-        public static float ConvertirDias(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 10 ? valorConvertir * 86400 :
-                   unidadMedidaConvertir == 11 ? valorConvertir * 1440 :
-                   unidadMedidaConvertir == 12 ? valorConvertir * 24 :
-                   unidadMedidaConvertir == 13 ? valorConvertir :
-                   0;
-        }
-        public static float ConvertirMililitros(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 14 ? valorConvertir :
-                   unidadMedidaConvertir == 15 ? valorConvertir / 1 :
-                   unidadMedidaConvertir == 16 ? valorConvertir / 1000 :
-                   unidadMedidaConvertir == 17 ? valorConvertir / 1000000 :
-                   0;
-        }
-        public static float ConvertirCentimetrosCubicos(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 14 ? valorConvertir * 1 :
-                   unidadMedidaConvertir == 15 ? valorConvertir :
-                   unidadMedidaConvertir == 16 ? valorConvertir / 1000 :
-                   unidadMedidaConvertir == 17 ? valorConvertir / 1000000 :
-                   0;
-        }
-        public static float ConvertirLitros(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 14 ? valorConvertir * 1000 :
-                   unidadMedidaConvertir == 15 ? valorConvertir * 1000 :
-                   unidadMedidaConvertir == 16 ? valorConvertir :
-                   unidadMedidaConvertir == 17 ? valorConvertir / 1000 :
-                   0;
-        }
-        public static float ConvertirMetrosCubicos(float valorConvertir, int unidadMedidaConvertir)
-        {
-            return unidadMedidaConvertir == 14 ? valorConvertir * 1000000 :
-                   unidadMedidaConvertir == 15 ? valorConvertir * 1000000 :
-                   unidadMedidaConvertir == 16 ? valorConvertir * 1000 :
-                   unidadMedidaConvertir == 17 ? valorConvertir :
-                   0;
-        }
-        public static string ObtenerNombreUnidadMedida(int unidadMedida)
-        {
-        return unidadMedida==1?"milímetros":
-                unidadMedida==2?"centímetros":
-                unidadMedida==3?"metros":
-                unidadMedida==4?"kilómetros":
-                unidadMedida==5?"gramos":
-                unidadMedida==6?"kilogramos":
-                unidadMedida==7?"toneladas":
-                unidadMedida==8?"libras":
-                unidadMedida==9?"onzas":
-                unidadMedida==10?"segundos":
-                unidadMedida==11?"minutos":
-                unidadMedida==12?"horas":
-                unidadMedida==13?"días":
-                unidadMedida==14?"mililitros":
-                unidadMedida==15?"centímetros cúbicos":
-                unidadMedida==16?"litros":
-                unidadMedida==17?"metros cúbicos":
-                                "";
-        }
+
         public static void RepetirMenuConversionUnidades()
         {
             Console.WriteLine("¿Desea realizar otra conversión de unidades? (s/n)");            
             repetirConversion = Console.ReadLine().ToLower() == "s" ? true:false;            
         }
     }
+
+    public static class Conversiones
+    {
+        private static readonly Dictionary<string, Func<double, double>> conversionesLongitud = new Dictionary<string, Func<double, double>>
+    {
+        {"Milímetros a Centímetros", valor => valor / 10.0},
+        {"Milímetros a Metros", valor => valor / 1000.0},
+        {"Milímetros a Kilómetros", valor => valor / 1_000_000.0},
+        {"Centímetros a Milímetros", valor => valor * 10.0},
+        {"Centímetros a Metros", valor => valor / 100.0},
+        {"Centímetros a Kilómetros", valor => valor / 100_000.0},
+        {"Metros a Milímetros", valor => valor * 1000.0},
+        {"Metros a Centímetros", valor => valor * 100.0},
+        {"Metros a Kilómetros", valor => valor / 1000.0},
+        {"Kilómetros a Milímetros", valor => valor * 1_000_000.0},
+        {"Kilómetros a Centímetros", valor => valor * 100_000.0},
+        {"Kilómetros a Metros", valor => valor * 1000.0}
+    };
+
+        private static readonly Dictionary<string, Func<double, double>> conversionesMasa = new Dictionary<string, Func<double, double>>
+    {
+        {"Gramos a Kilogramos", valor => valor / 1000.0},
+        {"Gramos a Toneladas", valor => valor / 1_000_000.0},
+        {"Gramos a Libras", valor => valor * 0.00220462},
+        {"Gramos a Onzas", valor => valor * 0.035274},
+        {"Kilogramos a Gramos", valor => valor * 1000.0},
+        {"Kilogramos a Toneladas", valor => valor / 1000.0},
+        {"Kilogramos a Libras", valor => valor * 2.20462},
+        {"Kilogramos a Onzas", valor => valor * 35.274},
+        {"Toneladas a Gramos", valor => valor * 1_000_000.0},
+        {"Toneladas a Kilogramos", valor => valor * 1000.0},
+        {"Toneladas a Libras", valor => valor * 2204.62},
+        {"Toneladas a Onzas", valor => valor * 35274},
+        {"Libras a Gramos", valor => valor * 453.592},
+        {"Libras a Kilogramos", valor => valor * 0.453592},
+        {"Libras a Toneladas", valor => valor * 0.000453592},
+        {"Libras a Onzas", valor => valor * 16.0},
+        {"Onzas a Gramos", valor => valor * 28.3495},
+        {"Onzas a Kilogramos", valor => valor * 0.0283495},
+        {"Onzas a Toneladas", valor => valor * 0.0000283495},
+        {"Onzas a Libras", valor => valor * 0.0625}
+    };
+
+        private static readonly Dictionary<string, Func<double, double>> conversionesTiempo = new Dictionary<string, Func<double, double>>
+    {
+        {"Segundos a Minutos", valor => valor / 60.0},
+        {"Segundos a Horas", valor => valor / 3600.0},
+        {"Segundos a Días", valor => valor / 86_400.0},
+        {"Minutos a Segundos", valor => valor * 60.0},
+        {"Minutos a Horas", valor => valor / 60.0},
+        {"Minutos a Días", valor => valor / 1_440.0},
+        {"Horas a Segundos", valor => valor * 3600.0},
+        {"Horas a Minutos", valor => valor * 60.0},
+        {"Horas a Días", valor => valor / 24.0},
+        {"Días a Segundos", valor => valor * 86_400.0},
+        {"Días a Minutos", valor => valor * 1_440.0},
+        {"Días a Horas", valor => valor * 24.0}
+    };
+
+        private static readonly Dictionary<string, Func<double, double>> conversionesVolumen = new Dictionary<string, Func<double, double>>
+    {
+        {"Mililitros a Centímetros cúbicos", valor => valor},
+        {"Mililitros a Litros", valor => valor / 1000.0},
+        {"Mililitros a Metros cúbicos", valor => valor / 1_000_000.0},
+        {"Centímetros cúbicos a Mililitros", valor => valor},
+        {"Centímetros cúbicos a Litros", valor => valor / 1000.0},
+        {"Centímetros cúbicos a Metros cúbicos", valor => valor / 1_000_000.0},
+        {"Litros a Mililitros", valor => valor * 1000.0},
+        {"Litros a Centímetros cúbicos", valor => valor * 1000.0},
+        {"Litros a Metros cúbicos", valor => valor / 1000.0},
+        {"Metros cúbicos a Mililitros", valor => valor * 1_000_000.0},
+        {"Metros cúbicos a Centímetros cúbicos", valor => valor * 1_000_000.0},
+        {"Metros cúbicos a Litros", valor => valor * 1000.0}
+    };
+
+        public static double Convertir(string conversion, double valor)
+        {
+            if (conversionesLongitud.TryGetValue(conversion, out var funcionLongitud))
+                return funcionLongitud(valor);
+            if (conversionesMasa.TryGetValue(conversion, out var funcionMasa))
+                return funcionMasa(valor);
+            if (conversionesTiempo.TryGetValue(conversion, out var funcionTiempo))
+                return funcionTiempo(valor);
+            if (conversionesVolumen.TryGetValue(conversion, out var funcionVolumen))
+                return funcionVolumen(valor);
+
+            throw new ArgumentException("Conversión no soportada.");
+        }
+    }
+
 }
